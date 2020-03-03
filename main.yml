@@ -1,0 +1,23 @@
+---
+- name: Write the Xdummy xorg.conf file
+  copy:
+    src: "{{ role_path }}/files/xorg.conf"
+    dest: "/etc/X11/xdummy_xorg.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  when: ansible.system == 'Linux'
+  
+- name: Copy Xdummy systemd unit
+  copy:
+    src: "{{ role_path }}/files/xdummy.service"
+    dest: "/etc/systemd/system/xdummy.service"
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  notify:
+    - Reload systemd units
+    - Start Xdummy service
+  when: ansible.system == 'Linux'
