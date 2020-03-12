@@ -6,3 +6,6 @@
     state: latest
     use_backend: yum
   become: yes
+
+- include_tasks:
+  file: xdummy_setup.yml
