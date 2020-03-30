@@ -8,4 +8,4 @@
   become: yes
 
 - include_tasks:
-  file: xdummy_setup.yml
+    file: xdummy_setup.yml
