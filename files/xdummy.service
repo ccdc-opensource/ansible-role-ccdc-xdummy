@@ -1,6 +1,10 @@
 [Unit]
 Description="Dummy X server providing DISPLAY=:77"
+After=network.target
 
 [Service]
 Type=simple
 ExecStart=/usr/bin/Xorg -noreset +extension GLX +extension RANDR +extension RENDER -config /etc/X11/xdummy_xorg.conf -logfile /var/log/Xorg.log :77
+
+[Install]
+WantedBy=multi-user.target
