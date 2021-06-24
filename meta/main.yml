@@ -2,9 +2,10 @@
 dependencies: []
 
 galaxy_info:
+role_name: xdummy
   author: piesce@ccdc.cam.ac.uk
   description: Setup a headless X server for builds
-  company: "CCDC"
+  company: The Cambridge Crystallographic Data Centre
   license: "license (BSD, MIT)"
   min_ansible_version: 2.9
   platforms:
