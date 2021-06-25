@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-role_name: xdummy
+  role_name: xdummy
   author: piesce@ccdc.cam.ac.uk
   description: Setup a headless X server for builds
   company: The Cambridge Crystallographic Data Centre
