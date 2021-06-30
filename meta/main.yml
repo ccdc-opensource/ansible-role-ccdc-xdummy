@@ -3,6 +3,7 @@ dependencies: []
 
 galaxy_info:
   role_name: xdummy
+  namespace: ccdc
   author: piesce@ccdc.cam.ac.uk
   description: Setup a headless X server for builds
   company: The Cambridge Crystallographic Data Centre
@@ -13,18 +14,6 @@ galaxy_info:
       versions:
         - all
     - name: Fedora
-      versions:
-        - all
-    - name: Debian
-      versions:
-        - all
-    - name: Ubuntu
-      versions:
-        - all
-    - name: Darwin
-      versions:
-        - all
-    - name: Windows
       versions:
         - all
   galaxy_tags:

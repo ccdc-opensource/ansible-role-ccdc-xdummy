@@ -7,7 +7,7 @@
     group: root
     mode: 0644
   register: xorg_file
-  become: yes
+  become: true
 
 - name: Copy Xdummy systemd unit
   copy:
@@ -17,26 +17,25 @@
     group: root
     mode: 0644
   register: xdummy_unit
-  become: yes
+  become: true
 
-- name: Reload systemd units
+- name: Reload systemd units # noqa: no-handler
   systemd:
     daemon_reload: yes
   when: xdummy_unit.changed
-  become: yes
+  become: true
 
 - name: Start Xdummy service
   service:
     name: xdummy
     enabled: yes
     state: started
-  become: yes
+  become: true
 
-- name: Start Xdummy service
+- name: Start Xdummy service # noqa: no-handler
   service:
     name: xdummy
     enabled: yes
     state: restarted
-  become: yes
+  become: true
   when: xorg_file.changed
-  

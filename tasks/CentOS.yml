@@ -1,11 +1,11 @@
 ---
 - name: Install Xdummy package
-  yum: 
+  yum:
     name:
       - xorg-x11-drv-dummy # Used to allow tests that require GUI
-    state: latest
+    state: present
     use_backend: yum
-  become: yes
+  become: true
 
 - include_tasks:
     file: xdummy_setup.yml
