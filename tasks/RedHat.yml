@@ -1,11 +1,12 @@
 ---
 - name: Install Xdummy package
-  yum:
+  ansible.builtin.package:
     name:
       - xorg-x11-drv-dummy # Used to allow tests that require GUI
     state: present
-    use_backend: yum
+    enable_plugin: crb
   become: true
 
-- include_tasks:
+- name: Configure Xdummy
+  ansible.builtin.include_tasks:
     file: xdummy_setup.yml
