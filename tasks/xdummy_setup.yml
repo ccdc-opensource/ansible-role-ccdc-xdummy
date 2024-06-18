@@ -1,41 +1,20 @@
 ---
-- name: Write the Xdummy xorg.conf file
-  copy:
-    src: "{{ role_path }}/files/xorg.conf"
-    dest: "/etc/X11/xdummy_xorg.conf"
-    owner: root
-    group: root
-    mode: 0644
-  register: xorg_file
-  become: true
-
 - name: Copy Xdummy systemd unit
-  copy:
+  ansible.builtin.copy:
     src: "{{ role_path }}/files/xdummy.service"
     dest: "/etc/systemd/system/xdummy.service"
     owner: root
     group: root
     mode: 0644
-  register: xdummy_unit
+  notify: "Reload systemd units"
   become: true
 
-- name: Reload systemd units # noqa: no-handler
-  systemd:
-    daemon_reload: yes
-  when: xdummy_unit.changed
+- name: Write the Xdummy xorg.conf file
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/xorg.conf"
+    dest: "/etc/X11/xdummy_xorg.conf"
+    owner: root
+    group: root
+    mode: 0644
+  notify: "Start Xdummy service"
   become: true
-
-- name: Start Xdummy service
-  service:
-    name: xdummy
-    enabled: yes
-    state: started
-  become: true
-
-- name: Start Xdummy service # noqa: no-handler
-  service:
-    name: xdummy
-    enabled: yes
-    state: restarted
-  become: true
-  when: xorg_file.changed
