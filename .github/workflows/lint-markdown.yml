@@ -3,7 +3,7 @@ name: Lint Markdown
 on:  # yamllint disable-line rule:truthy
   pull_request:
     paths:
-      - '**/*.md'
+      - "**/*.md"
 
 jobs:
   markdownlint:
@@ -12,14 +12,18 @@ jobs:
       changed-files: ${{ steps.file-changes.outputs.changed-files }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Modified files
         id: file-changes
         run: |
-          echo "changed-files=$(git diff --name-only -r origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} | grep '\.md' | tr '\n' ' ')" >> $GITHUB_OUTPUT
+          echo \
+              "changed-files=$(git diff --name-only -r origin/${GITHUB_BASE_REF} origin/${GITHUB_HEAD_REF} \
+              | grep '\.md' \
+              | tr '\n' ' ')" \
+          >> $GITHUB_OUTPUT
 
       - name: Check GitHub event type to determine reporter type
         run: |
@@ -30,7 +34,7 @@ jobs:
           fi
 
       - name: Run markdownlint
-        uses: reviewdog/action-markdownlint@v0.9.0
+        uses: reviewdog/action-markdownlint@v0
         with:
           fail_on_error: false
           filter_mode: diff_context
