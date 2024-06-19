@@ -1,7 +1,4 @@
 ---
-- name: Import handlers
-  ansible.builtin.import_tasks: handlers/main.yml
-
 - name: Install Xdummy
   ansible.builtin.include_tasks: "{{ taskfile }}"
   with_first_found:
