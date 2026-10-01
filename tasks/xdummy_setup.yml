@@ -18,3 +18,4 @@
     mode: 0644
   notify: "Start Xdummy service"
   become: true
+  changed_when: true
